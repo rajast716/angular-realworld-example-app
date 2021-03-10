@@ -32,12 +32,12 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/enterprise'
-    ArtifactName: 'enterprise-web'
+    ArtifactName: 'enterprise-web.zip'
     publishLocation: 'Container'
 
 - task: DownloadBuildArtifacts@0
   inputs:
     buildType: 'current'
     downloadType: 'single'
-    artifactName: 'enterprise-web'
+    artifactName: 'enterprise-web.zip'
     downloadPath: '$(System.ArtifactsDirectory)'

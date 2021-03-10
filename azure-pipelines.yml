@@ -53,4 +53,4 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: |
       az --version
-      az storage blob upload-batch --source dist/* --destination '$web'
+      az storage blob upload-batch --source dist --destination '$web'

@@ -26,7 +26,7 @@ steps:
     rootFolderOrFile: 'dist'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/enterprise-web.zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/enterprise/enterprise-web.zip'
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
@@ -40,4 +40,4 @@ steps:
     buildType: 'current'
     downloadType: 'single'
     artifactName: 'enterprise-web.zip'
-    downloadPath: '$(System.ArtifactsDirectory)'
+    downloadPath: '$(System.ArtifactsDirectory)/enterprise'

@@ -36,6 +36,7 @@ steps:
     publishLocation: 'Container'
 
 - task: DownloadBuildArtifacts@0
+  enabled: false
   inputs:
     buildType: 'current'
     downloadType: 'single'

@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  AZURE_STORAGE_CONNECTION_STRING: 'BlobEndpoint=https://sast716.blob.core.windows.net/;QueueEndpoint=https://sast716.queue.core.windows.net/;FileEndpoint=https://sast716.file.core.windows.net/;TableEndpoint=https://sast716.table.core.windows.net/;SharedAccessSignature=sv=2020-02-10&ss=b&srt=sco&sp=rwdlacx&se=2022-03-11T02:50:47Z&st=2021-03-10T18:50:47Z&spr=https&sig=vhWteGA3pd52oo9CrjbMMcKZST1JwzXmOqDaC3saBd4%3D'
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -43,10 +46,11 @@ steps:
     artifactName: 'enterprise-web.zip'
     downloadPath: '$(System.ArtifactsDirectory)/enterprise'
 
-- task: AzureFileCopy@4
+- task: AzureCLI@2
   inputs:
-    SourcePath: 'dist/*'
     azureSubscription: 'Azure Subscription (2cc9b3c8-6bcc-4462-9f8f-83b16c02df57)'
-    Destination: 'AzureBlob'
-    storage: 'sast716'
-    ContainerName: '$web'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az --version
+      az storage file upload-batch --source dist/* --destination '$web'

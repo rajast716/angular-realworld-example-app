@@ -54,3 +54,4 @@ steps:
     inlineScript: |
       az --version
       az storage blob upload-batch --source dist --destination '$web'
+      // az cdn endpoint purge -g enterprise-dev-rg --profile-name enterprise-ngapp --content-paths '/*' --name enterprise-stdev --no-wait
